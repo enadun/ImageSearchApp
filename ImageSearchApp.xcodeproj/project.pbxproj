@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		FA39FE8A2430585900E7045C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE892430585900E7045C /* Config.swift */; };
 		FA39FE8C2430587100E7045C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8B2430587100E7045C /* Strings.swift */; };
-		FA39FE8E24305A4800E7045C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8D24305A4800E7045C /* API.swift */; };
+		FA39FE8E24305A4800E7045C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8D24305A4800E7045C /* APIManager.swift */; };
+		FA39FE9024307BA300E7045C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8F24307BA300E7045C /* DataManager.swift */; };
+		FA39FE9224307C1400E7045C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9124307C1400E7045C /* Modal.swift */; };
+		FA39FE9424307DAB00E7045C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9324307DAB00E7045C /* Utils.swift */; };
+		FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE952430864300E7045C /* ImageSearchViewModal.swift */; };
 		FAEB741024303E7100737875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB740F24303E7100737875 /* AppDelegate.swift */; };
 		FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741124303E7100737875 /* SceneDelegate.swift */; };
 		FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741324303E7100737875 /* ImageSearchViewController.swift */; };
@@ -33,7 +37,11 @@
 /* Begin PBXFileReference section */
 		FA39FE892430585900E7045C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FA39FE8B2430587100E7045C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		FA39FE8D24305A4800E7045C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		FA39FE8D24305A4800E7045C /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		FA39FE8F24307BA300E7045C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA39FE9124307C1400E7045C /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		FA39FE9324307DAB00E7045C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FA39FE952430864300E7045C /* ImageSearchViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewModal.swift; sourceTree = "<group>"; };
 		FAEB740C24303E7100737875 /* ImageSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEB740F24303E7100737875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEB741124303E7100737875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +97,9 @@
 			children = (
 				FA39FE892430585900E7045C /* Config.swift */,
 				FA39FE8B2430587100E7045C /* Strings.swift */,
-				FA39FE8D24305A4800E7045C /* API.swift */,
+				FA39FE8F24307BA300E7045C /* DataManager.swift */,
+				FA39FE8D24305A4800E7045C /* APIManager.swift */,
+				FA39FE9124307C1400E7045C /* Modal.swift */,
 				FAEB743324303EA900737875 /* Image Search */,
 				FAEB743424303EB600737875 /* Web Search */,
 				FAEB740F24303E7100737875 /* AppDelegate.swift */,
@@ -98,6 +108,7 @@
 				FAEB741A24303E7200737875 /* Assets.xcassets */,
 				FAEB741C24303E7200737875 /* LaunchScreen.storyboard */,
 				FAEB741F24303E7200737875 /* Info.plist */,
+				FA39FE9324307DAB00E7045C /* Utils.swift */,
 			);
 			path = ImageSearchApp;
 			sourceTree = "<group>";
@@ -114,6 +125,7 @@
 		FAEB743324303EA900737875 /* Image Search */ = {
 			isa = PBXGroup;
 			children = (
+				FA39FE952430864300E7045C /* ImageSearchViewModal.swift */,
 				FAEB741324303E7100737875 /* ImageSearchViewController.swift */,
 			);
 			path = "Image Search";
@@ -229,12 +241,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEB741624303E7100737875 /* WebSearchViewController.swift in Sources */,
+				FA39FE9024307BA300E7045C /* DataManager.swift in Sources */,
 				FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */,
+				FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */,
 				FA39FE8A2430585900E7045C /* Config.swift in Sources */,
 				FAEB741024303E7100737875 /* AppDelegate.swift in Sources */,
+				FA39FE9424307DAB00E7045C /* Utils.swift in Sources */,
 				FA39FE8C2430587100E7045C /* Strings.swift in Sources */,
 				FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */,
-				FA39FE8E24305A4800E7045C /* API.swift in Sources */,
+				FA39FE9224307C1400E7045C /* Modal.swift in Sources */,
+				FA39FE8E24305A4800E7045C /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
