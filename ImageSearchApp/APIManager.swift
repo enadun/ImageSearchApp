@@ -12,7 +12,7 @@ protocol ImageSearchAPIType {
     func searchImagesFor(keyword: String, completion: @escaping (Result<Data, Error>) -> ())
 }
 
-class API: ImageSearchAPIType {
+class APIManager: ImageSearchAPIType {
     
     private let headers = [ "x-rapidapi-host": Config.host,
                             "x-rapidapi-key": Config.apiKey ]
