@@ -14,6 +14,9 @@
 		FA39FE9224307C1400E7045C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9124307C1400E7045C /* Modal.swift */; };
 		FA39FE9424307DAB00E7045C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9324307DAB00E7045C /* Utils.swift */; };
 		FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE952430864300E7045C /* ImageSearchViewModal.swift */; };
+		FA39FE992430F32B00E7045C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */; };
+		FA39FE9B2430F49000E7045C /* ImageCellViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */; };
+		FA39FE9D2430F7CE00E7045C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9C2430F7CE00E7045C /* Box.swift */; };
 		FAEB741024303E7100737875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB740F24303E7100737875 /* AppDelegate.swift */; };
 		FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741124303E7100737875 /* SceneDelegate.swift */; };
 		FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741324303E7100737875 /* ImageSearchViewController.swift */; };
@@ -42,6 +45,9 @@
 		FA39FE9124307C1400E7045C /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		FA39FE9324307DAB00E7045C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FA39FE952430864300E7045C /* ImageSearchViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewModal.swift; sourceTree = "<group>"; };
+		FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModal.swift; sourceTree = "<group>"; };
+		FA39FE9C2430F7CE00E7045C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		FAEB740C24303E7100737875 /* ImageSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEB740F24303E7100737875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEB741124303E7100737875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA39FE972430F15700E7045C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */,
+				FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		FAEB740324303E7100737875 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +124,7 @@
 				FAEB741C24303E7200737875 /* LaunchScreen.storyboard */,
 				FAEB741F24303E7200737875 /* Info.plist */,
 				FA39FE9324307DAB00E7045C /* Utils.swift */,
+				FA39FE9C2430F7CE00E7045C /* Box.swift */,
 			);
 			path = ImageSearchApp;
 			sourceTree = "<group>";
@@ -125,6 +141,7 @@
 		FAEB743324303EA900737875 /* Image Search */ = {
 			isa = PBXGroup;
 			children = (
+				FA39FE972430F15700E7045C /* Cell */,
 				FA39FE952430864300E7045C /* ImageSearchViewModal.swift */,
 				FAEB741324303E7100737875 /* ImageSearchViewController.swift */,
 			);
@@ -241,11 +258,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEB741624303E7100737875 /* WebSearchViewController.swift in Sources */,
+				FA39FE9D2430F7CE00E7045C /* Box.swift in Sources */,
 				FA39FE9024307BA300E7045C /* DataManager.swift in Sources */,
 				FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */,
+				FA39FE9B2430F49000E7045C /* ImageCellViewModal.swift in Sources */,
 				FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */,
 				FA39FE8A2430585900E7045C /* Config.swift in Sources */,
 				FAEB741024303E7100737875 /* AppDelegate.swift in Sources */,
+				FA39FE992430F32B00E7045C /* ImageCollectionViewCell.swift in Sources */,
 				FA39FE9424307DAB00E7045C /* Utils.swift in Sources */,
 				FA39FE8C2430587100E7045C /* Strings.swift in Sources */,
 				FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */,

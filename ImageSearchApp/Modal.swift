@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: - Message
+// MARK: - Items
 struct Items: Codable {
     let type: String?
     let images: [Image]?
@@ -19,7 +19,7 @@ struct Items: Codable {
     }
 }
 
-// MARK: - Value
+// MARK: - Image
 struct Image: Codable {
     let url: String?
     let height, width: Int?
