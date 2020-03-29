@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA39FE8A2430585900E7045C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE892430585900E7045C /* Config.swift */; };
+		FA39FE8C2430587100E7045C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8B2430587100E7045C /* Strings.swift */; };
+		FA39FE8E24305A4800E7045C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8D24305A4800E7045C /* API.swift */; };
 		FAEB741024303E7100737875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB740F24303E7100737875 /* AppDelegate.swift */; };
 		FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741124303E7100737875 /* SceneDelegate.swift */; };
-		FAEB741424303E7100737875 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741324303E7100737875 /* FirstViewController.swift */; };
-		FAEB741624303E7100737875 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741524303E7100737875 /* SecondViewController.swift */; };
+		FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741324303E7100737875 /* ImageSearchViewController.swift */; };
+		FAEB741624303E7100737875 /* WebSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB741524303E7100737875 /* WebSearchViewController.swift */; };
 		FAEB741924303E7100737875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB741724303E7100737875 /* Main.storyboard */; };
 		FAEB741B24303E7200737875 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEB741A24303E7200737875 /* Assets.xcassets */; };
 		FAEB741E24303E7200737875 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB741C24303E7200737875 /* LaunchScreen.storyboard */; };
@@ -28,11 +31,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA39FE892430585900E7045C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FA39FE8B2430587100E7045C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		FA39FE8D24305A4800E7045C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		FAEB740C24303E7100737875 /* ImageSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEB740F24303E7100737875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEB741124303E7100737875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FAEB741324303E7100737875 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		FAEB741524303E7100737875 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		FAEB741324303E7100737875 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
+		FAEB741524303E7100737875 /* WebSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSearchViewController.swift; sourceTree = "<group>"; };
 		FAEB741824303E7100737875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAEB741A24303E7200737875 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAEB741D24303E7200737875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,10 +87,13 @@
 		FAEB740E24303E7100737875 /* ImageSearchApp */ = {
 			isa = PBXGroup;
 			children = (
+				FA39FE892430585900E7045C /* Config.swift */,
+				FA39FE8B2430587100E7045C /* Strings.swift */,
+				FA39FE8D24305A4800E7045C /* API.swift */,
+				FAEB743324303EA900737875 /* Image Search */,
+				FAEB743424303EB600737875 /* Web Search */,
 				FAEB740F24303E7100737875 /* AppDelegate.swift */,
 				FAEB741124303E7100737875 /* SceneDelegate.swift */,
-				FAEB741324303E7100737875 /* FirstViewController.swift */,
-				FAEB741524303E7100737875 /* SecondViewController.swift */,
 				FAEB741724303E7100737875 /* Main.storyboard */,
 				FAEB741A24303E7200737875 /* Assets.xcassets */,
 				FAEB741C24303E7200737875 /* LaunchScreen.storyboard */,
@@ -100,6 +109,22 @@
 				FAEB742A24303E7300737875 /* Info.plist */,
 			);
 			path = ImageSearchAppTests;
+			sourceTree = "<group>";
+		};
+		FAEB743324303EA900737875 /* Image Search */ = {
+			isa = PBXGroup;
+			children = (
+				FAEB741324303E7100737875 /* ImageSearchViewController.swift */,
+			);
+			path = "Image Search";
+			sourceTree = "<group>";
+		};
+		FAEB743424303EB600737875 /* Web Search */ = {
+			isa = PBXGroup;
+			children = (
+				FAEB741524303E7100737875 /* WebSearchViewController.swift */,
+			);
+			path = "Web Search";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +228,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEB741624303E7100737875 /* SecondViewController.swift in Sources */,
-				FAEB741424303E7100737875 /* FirstViewController.swift in Sources */,
+				FAEB741624303E7100737875 /* WebSearchViewController.swift in Sources */,
+				FAEB741424303E7100737875 /* ImageSearchViewController.swift in Sources */,
+				FA39FE8A2430585900E7045C /* Config.swift in Sources */,
 				FAEB741024303E7100737875 /* AppDelegate.swift in Sources */,
+				FA39FE8C2430587100E7045C /* Strings.swift in Sources */,
 				FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */,
+				FA39FE8E24305A4800E7045C /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
