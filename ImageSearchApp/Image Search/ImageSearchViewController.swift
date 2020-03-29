@@ -22,10 +22,29 @@ class ImageSearchViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         view.addGestureRecognizer(tapGesture)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
         configVM()
+        bindUI()
+        searchTextField.delegate = self
     }
     
     //MARK:- Private methods
+    private func bindUI() {
+        vm?.images.bind(listener: { images in
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+            print(images)
+        })
+        
+        vm?.error.bind(listener: { error in
+            print(error) //Need to handle error, Display dialog
+        })
+    }
+    
     private func configVM() {
         let api = APIManager()
         let dataManager = DataManager(with: api)
@@ -37,19 +56,48 @@ class ImageSearchViewController: UIViewController {
         view.endEditing(true)
     }
     
-    //MARK:- Button tap methods
-    @IBAction func searchButtonTapped(_ sender: Any) {
+    private func search() {
+        hideKeyboard()
         if let keyword = searchTextField.text {
-            vm?.getImagesFor(keyword: keyword, completion: { result in
-                switch result {
-                case .success(let images):
-                    print(images)
-                case .failure(let error):
-                    print(error)
-                }
-            })
+            vm?.getImagesFor(keyword: keyword)
         }
     }
     
+    //MARK:- Button tap methods
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        search()
+    }
+    
+}
+
+extension ImageSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    //MARK:- Data source methods
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        vm?.getImageCount() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView
+            .dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.cellID,
+                                 for: indexPath) as? ImageCollectionViewCell
+        cell?.vm = vm?.getImageVMAt(index: indexPath.row)
+        return cell ?? ImageCollectionViewCell()
+    }
+    
+    //MARK:- Delegate methods
+    
+    
+    //MARK:- DelegateFlowLayout methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: UIScreen.main.bounds.width - 30,
+               height: 100)
+    }
+}
+
+extension ImageSearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        search()
+        return true
+    }
 }
 
