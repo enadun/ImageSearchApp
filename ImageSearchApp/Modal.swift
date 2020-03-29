@@ -11,11 +11,11 @@ import UIKit
 // MARK: - Message
 struct Items: Codable {
     let type: String?
-    let value: [Image]?
+    let images: [Image]?
 
     enum CodingKeys: String, CodingKey {
         case type = "_type"
-        case value
+        case images = "value"
     }
 }
 
@@ -25,4 +25,11 @@ struct Image: Codable {
     let height, width: Int?
     let thumbnail: String?
     let thumbnailHeight, thumbnailWidth: Int?
+    let name, title: String?
+    let imageWebSearchURL: String?
+
+    enum CodingKeys: String, CodingKey {
+        case url, height, width, thumbnail, thumbnailHeight, thumbnailWidth, name, title
+        case imageWebSearchURL = "imageWebSearchUrl"
+    }
 }
