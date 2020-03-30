@@ -9,7 +9,7 @@
 import UIKit
 
 struct ImageCellViewModal {
-    let image: UIImage?
+    let image: Box<UIImage?>?
     let title: String?
     let url: URL?
 }

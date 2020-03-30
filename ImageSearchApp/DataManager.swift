@@ -10,6 +10,7 @@ import UIKit
 
 protocol DataManagerType {
     func findImagesFor(keyword: String, completion: @escaping (Result<[Image], Error>) -> ())
+    func findImageFor(url: URL, completion: @escaping (Result<UIImage?, Error>) -> ())
 }
 
 class DataManager: DataManagerType {
@@ -36,18 +37,36 @@ class DataManager: DataManagerType {
                         return completion(.success(images))
                     }
                 }
-                loadAndSaveImages(keyword: keyword, completion: completion)
+                loadAndSaveRequest(keyword: keyword, completion: completion)
             } catch let error {
                 completion(.failure(error))
             }
         } else {
             //Else download the content and save with the md5 name
-            loadAndSaveImages(keyword: keyword, completion: completion)
+            loadAndSaveRequest(keyword: keyword, completion: completion)
+        }
+    }
+    
+    func findImageFor(url: URL, completion: @escaping (Result<UIImage?, Error>) -> ()) {
+        let md5 = MD5(string: url.absoluteString)
+        let paths = getContentOfImageCacheDirectory()
+        //If md5 availabel retrive the file from storage
+        if paths?.contains(md5) == true {
+            if let data = loadImageFromCacheWith(fileName: md5) {
+                if let image = UIImage(data: data){
+                    return completion(.success(image))
+                }
+            }
+            loadAndSaveImage(url: url, completion: completion)
+            
+        } else {
+            //Else download the content and save with the md5 name
+            loadAndSaveImage(url: url, completion: completion)
         }
     }
     
     //MARK: - Private methods
-    private func loadAndSaveImages(keyword: String, completion: @escaping (Result<[Image], Error>) -> ()) {
+    private func loadAndSaveRequest(keyword: String, completion: @escaping (Result<[Image], Error>) -> ()) {
         let md5 = MD5(string: keyword.lowercased())
         api.searchImagesFor(keyword: keyword) { [weak self] result in
             switch result {
@@ -61,7 +80,6 @@ class DataManager: DataManagerType {
                 } catch let error {
                     completion(.failure(error))
                 }
-            //Send data
             case .failure(let error):
                 return completion(.failure(error))
             }
@@ -108,10 +126,62 @@ class DataManager: DataManagerType {
         return getCacheDirectoryFor(direcotyName: requestsCacheDriectoryName)
     }
     
+    //Images
+    private func saveImageToCashWith(data: Data, md5: String) {
+        if let directory = getImageCacheDirectory() {
+            let path = directory.appendingPathComponent(md5)
+                .appendingPathExtension("img")
+            print(path.path)
+            try? data.write(to: path)
+        }
+    }
+    
+    private func loadAndSaveImage(url: URL, completion: @escaping (Result<UIImage?, Error>) -> ()) {
+        let md5 = MD5(string: url.absoluteString)
+        api.downloadImageFor(url: url) { [weak self] result in
+            switch result {
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    self?.saveImageToCashWith(data: data, md5: md5)
+                    return completion(.success(image))
+                }
+                completion(.success(nil))
+            case .failure(let error):
+                return completion(.failure(error))
+            }
+        }
+    }
+    
+    private func loadImageFromCacheWith(fileName: String) -> Data? {
+        do {
+            if let filePath = getImageCacheDirectory()?
+                .appendingPathComponent(fileName)
+                .appendingPathExtension("img") {
+                let data = try Data(contentsOf: filePath)
+                return data
+            }
+            return nil
+        } catch _ {
+            return nil
+        }
+    }
+    
+    private func getContentOfImageCacheDirectory() -> [String]? {
+        guard let directoryPath = getImageCacheDirectory()?.path else { return nil }
+        do {
+            let paths = try manager.contentsOfDirectory(atPath: directoryPath)
+                .map{ String($0.split(separator: ".").first ?? "") }
+                .compactMap{ $0 }
+            return paths
+        } catch {
+            return nil
+        }
+    }
     private func getImageCacheDirectory() -> URL? {
         return getCacheDirectoryFor(direcotyName: imageCacheDriectoryName)
     }
     
+    //Common
     private func getCacheDirectoryFor(direcotyName: String) -> URL? {
         if let reqDirectory = getDocumentsDirectory()?
             .appendingPathComponent(cacheDirectoryName)
@@ -134,14 +204,4 @@ class DataManager: DataManagerType {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths.first
     }
-    
-    //    private func save(text: String,
-    //                      withFileName fileName: String) {
-    //        let filename = getDocumentsDirectory().appendingPathComponent(fileName)
-    //        print("File name: ", filename.description)
-    //        do {
-    //            try text.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-    //        } catch {
-    //        }
-    //    }
 }

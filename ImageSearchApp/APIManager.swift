@@ -10,6 +10,7 @@ import Foundation
 
 protocol ImageSearchAPIType {
     func searchImagesFor(keyword: String, completion: @escaping (Result<Data, Error>) -> ())
+    func downloadImageFor(url: URL, completion: @escaping (Result<Data, Error>) -> ())
 }
 
 class APIManager: ImageSearchAPIType {
@@ -53,5 +54,19 @@ class APIManager: ImageSearchAPIType {
             return completion(.failure(NSError(domain: "", code: 100, userInfo: nil)))
         }
         dataTask.resume()
+    }
+    
+    func downloadImageFor(url: URL, completion: @escaping (Result<Data, Error>) -> ()) {
+        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy,
+                                 timeoutInterval: Config.requestTimeout)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                return completion(.failure(error))
+            }
+            if let data = data {
+                return completion(.success(data))
+            }
+            return completion(.failure(NSError(domain: "", code: 100, userInfo: nil)))
+        }.resume()
     }
 }

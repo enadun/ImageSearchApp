@@ -9,9 +9,11 @@
 import UIKit
 
 class ImageSearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var emptyListLabel: UILabel!
     
     private var vm: ImageSearchViewModalType?
     
@@ -35,13 +37,17 @@ class ImageSearchViewController: UIViewController {
     private func bindUI() {
         vm?.images.bind(listener: { images in
             DispatchQueue.main.async { [weak self] in
+                self?.loadingView.isHidden = true
+                self?.emptyListLabel.isHidden = images.count > 0
                 self?.tableView.reloadData()
             }
             print(images)
         })
         
         vm?.error.bind(listener: { error in
-            print(error) //Need to handle error, Display dialog
+            DispatchQueue.main.async { [weak self] in
+                self?.loadingView.isHidden = true
+            }
         })
     }
     
@@ -58,8 +64,11 @@ class ImageSearchViewController: UIViewController {
     
     private func search() {
         hideKeyboard()
-        if let keyword = searchTextField.text {
-            vm?.getImagesFor(keyword: keyword)
+        if let keyword = searchTextField.text?.trimmingCharacters(in: .whitespaces) {
+            if !keyword.isEmpty {
+                loadingView.isHidden = false
+                vm?.getImagesFor(keyword: keyword)
+            }
         }
     }
     
