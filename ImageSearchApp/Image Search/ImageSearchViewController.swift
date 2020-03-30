@@ -11,7 +11,7 @@ import UIKit
 class ImageSearchViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     private var vm: ImageSearchViewModalType?
     
@@ -23,8 +23,8 @@ class ImageSearchViewController: UIViewController {
         tapGesture.cancelsTouchesInView = true
         view.addGestureRecognizer(tapGesture)
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
         configVM()
         bindUI()
@@ -35,7 +35,7 @@ class ImageSearchViewController: UIViewController {
     private func bindUI() {
         vm?.images.bind(listener: { images in
             DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
+                self?.tableView.reloadData()
             }
             print(images)
         })
@@ -70,27 +70,17 @@ class ImageSearchViewController: UIViewController {
     
 }
 
-extension ImageSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    //MARK:- Data source methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension ImageSearchViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         vm?.getImageCount() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView
-            .dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.cellID,
-                                 for: indexPath) as? ImageCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView
+            .dequeueReusableCell(withIdentifier: ImageTableViewCell.cellID,
+                                 for: indexPath) as? ImageTableViewCell
         cell?.vm = vm?.getImageVMAt(index: indexPath.row)
-        return cell ?? ImageCollectionViewCell()
-    }
-    
-    //MARK:- Delegate methods
-    
-    
-    //MARK:- DelegateFlowLayout methods
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: UIScreen.main.bounds.width - 30,
-               height: 100)
+        return cell ?? ImageTableViewCell()
     }
 }
 
