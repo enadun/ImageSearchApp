@@ -11,13 +11,16 @@ import UIKit
 protocol ImageSearchViewModalType {
     var images: Box<[Image]> {get}
     var error: Box<Error?> {get}
+    var mainImage: Box<UIImage?> {get}
     func getImagesFor(keyword: String)
     func getImageCount() -> Int
     func getImageVMAt(index: Int) -> ImageCellViewModal
+    func loadImageAt(index: Int)
 }
 
 class ImageSearchViewModal: ImageSearchViewModalType {
-
+    
+    let mainImage: Box<UIImage?> = Box(nil)
     let images: Box<[Image]> = Box([])
     let error: Box<Error?> = Box(nil)
     
@@ -46,18 +49,34 @@ class ImageSearchViewModal: ImageSearchViewModalType {
     func getImageVMAt(index: Int) -> ImageCellViewModal {
         let imageObj = images.value[index]
         let url = URL(string: imageObj.url ?? "")
+        let webUrl = URL(string: imageObj.imageWebSearchURL ?? "")
         let thumImage: Box<UIImage?> = Box(nil)
         if let imgURL = URL(string: imageObj.thumbnail ?? "") {
-            dataManager.findImageFor(url: imgURL) { result in
+            dataManager.findImageFor(url: imgURL) { [weak self] result in
                 switch result {
                 case .success(let image):
                     thumImage.value = image
-                case .failure(_):
-                    thumImage.value = nil
+                case .failure(let error):
+                    self?.error.value = error
                 }
             }
         }
-        return ImageCellViewModal(image: thumImage, title: imageObj.title, url:url)
+        return ImageCellViewModal(image: thumImage,
+                                  title: imageObj.title,
+                                  url: url,
+                                  webUrl:webUrl )
     }
     
+    func loadImageAt(index: Int) {
+        if let url = URL(string: images.value[index].url ?? "") {
+            dataManager.findImageFor(url: url) { [weak self] result in
+                switch result {
+                case .success(let image):
+                    self?.mainImage.value = image
+                case .failure(let error):
+                    self?.error.value = error
+                }
+            }
+        }
+    }
 }

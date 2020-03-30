@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImagePreviewViewController" customModule="ImageSearchApp" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="ubP-zf-fzg" id="yiI-J9-3KE"/>
+                <outlet property="scrollView" destination="SMb-uf-fkO" id="RFQ-0c-1Ec"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMb-uf-fkO">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gJn-dL-s7Y">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ubP-zf-fzg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="gJn-dL-s7Y" firstAttribute="centerX" secondItem="SMb-uf-fkO" secondAttribute="centerX" id="0Gu-Lc-25V"/>
+                        <constraint firstItem="gJn-dL-s7Y" firstAttribute="top" secondItem="SMb-uf-fkO" secondAttribute="top" id="Fna-TQ-ngh"/>
+                        <constraint firstItem="gJn-dL-s7Y" firstAttribute="centerY" secondItem="SMb-uf-fkO" secondAttribute="centerY" id="cSD-9m-DMq"/>
+                        <constraint firstAttribute="bottom" secondItem="gJn-dL-s7Y" secondAttribute="bottom" id="ced-8M-2zc"/>
+                        <constraint firstItem="gJn-dL-s7Y" firstAttribute="leading" secondItem="SMb-uf-fkO" secondAttribute="leading" id="jf2-37-XJI"/>
+                        <constraint firstAttribute="trailing" secondItem="gJn-dL-s7Y" secondAttribute="trailing" id="ri4-nJ-H1K"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="a3f-tj-k8a"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="rjR-y8-9Zn"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFZ-GZ-qYG">
+                    <rect key="frame" x="339" y="64" width="55" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="DxF-Wz-wup"/>
+                        <constraint firstAttribute="width" constant="55" id="OSs-QY-bjL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="Close">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="rno-Pb-avB"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SMb-uf-fkO" secondAttribute="trailing" id="Hka-G3-rtx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bFZ-GZ-qYG" secondAttribute="trailing" constant="20" id="N34-bU-kCN"/>
+                <constraint firstItem="bFZ-GZ-qYG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Nnz-m5-ieU"/>
+                <constraint firstItem="SMb-uf-fkO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="f4C-n4-JpK"/>
+                <constraint firstItem="SMb-uf-fkO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lrn-oo-bu8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SMb-uf-fkO" secondAttribute="bottom" id="xNp-5K-jz4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="100"/>
+        </view>
+    </objects>
+</document>

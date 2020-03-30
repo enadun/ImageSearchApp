@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol ImageCellDelegate: NSObject {
+    func searchOnWebWith(url: URL)
+}
+
 class ImageTableViewCell: UITableViewCell {
     static let cellID = "ImageTableViewCell"
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    weak var delegate: ImageCellDelegate?
     var vm: ImageCellViewModal? {
         didSet {
             thumbImageView.image = nil //Placeholder image
@@ -31,6 +36,8 @@ class ImageTableViewCell: UITableViewCell {
     
     //Web search
     @IBAction func searchOnWebTapped(_ sender: Any) {
-        
+        if let url = vm?.webUrl {
+            delegate?.searchOnWebWith(url: url)
+        }
     }
 }

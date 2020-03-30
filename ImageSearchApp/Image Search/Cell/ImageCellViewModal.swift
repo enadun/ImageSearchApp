@@ -12,4 +12,5 @@ struct ImageCellViewModal {
     let image: Box<UIImage?>?
     let title: String?
     let url: URL?
+    let webUrl: URL?
 }

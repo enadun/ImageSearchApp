@@ -16,13 +16,14 @@ class ImageSearchViewController: UIViewController {
     @IBOutlet weak var emptyListLabel: UILabel!
     
     private var vm: ImageSearchViewModalType?
+    private var isInitialLoad = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Dissmissing keyboard
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        tapGesture.cancelsTouchesInView = true
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         
         tableView.dataSource = self
@@ -39,6 +40,7 @@ class ImageSearchViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.loadingView.isHidden = true
                 self?.emptyListLabel.isHidden = images.count > 0
+                    || self?.isInitialLoad == true
                 self?.tableView.reloadData()
             }
             print(images)
@@ -47,6 +49,20 @@ class ImageSearchViewController: UIViewController {
         vm?.error.bind(listener: { error in
             DispatchQueue.main.async { [weak self] in
                 self?.loadingView.isHidden = true
+                self?.displayErrorAlert()
+            }
+        })
+        
+        vm?.mainImage.bind(listener: { image in
+            DispatchQueue.main.async { [weak self] in
+                self?.loadingView.isHidden = true
+                guard let image = image else {
+                    self?.displayErrorAlert()
+                    return 
+                }
+                let imagePreviewVC = ImagePreviewViewController(with: image)
+                imagePreviewVC.modalPresentationStyle = .fullScreen
+                self?.present(imagePreviewVC, animated: true, completion: nil)
             }
         })
     }
@@ -70,6 +86,20 @@ class ImageSearchViewController: UIViewController {
                 vm?.getImagesFor(keyword: keyword)
             }
         }
+        isInitialLoad = false
+    }
+    
+    private func displayErrorAlert() {
+        if isInitialLoad == false {
+            let alert = UIAlertController(title: "Error",
+                                          message: "Something went wrong",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default) { _ in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     //MARK:- Button tap methods
@@ -80,6 +110,7 @@ class ImageSearchViewController: UIViewController {
 }
 
 extension ImageSearchViewController: UITableViewDataSource, UITableViewDelegate {
+    //Data source methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         vm?.getImageCount() ?? 0
     }
@@ -89,7 +120,21 @@ extension ImageSearchViewController: UITableViewDataSource, UITableViewDelegate 
             .dequeueReusableCell(withIdentifier: ImageTableViewCell.cellID,
                                  for: indexPath) as? ImageTableViewCell
         cell?.vm = vm?.getImageVMAt(index: indexPath.row)
+        cell?.delegate = self
         return cell ?? ImageTableViewCell()
+    }
+    
+    //Delegate methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = false
+        loadingView.isHidden = false
+        vm?.loadImageAt(index: indexPath.row)
+    }
+}
+
+extension ImageSearchViewController: ImageCellDelegate {
+    func searchOnWebWith(url: URL) {
+        UIApplication.shared.open(url)
     }
 }
 
