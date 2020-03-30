@@ -14,7 +14,7 @@
 		FA39FE9224307C1400E7045C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9124307C1400E7045C /* Modal.swift */; };
 		FA39FE9424307DAB00E7045C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9324307DAB00E7045C /* Utils.swift */; };
 		FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE952430864300E7045C /* ImageSearchViewModal.swift */; };
-		FA39FE992430F32B00E7045C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */; };
+		FA39FE992430F32B00E7045C /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE982430F32B00E7045C /* ImageTableViewCell.swift */; };
 		FA39FE9B2430F49000E7045C /* ImageCellViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */; };
 		FA39FE9D2430F7CE00E7045C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9C2430F7CE00E7045C /* Box.swift */; };
 		FAEB741024303E7100737875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB740F24303E7100737875 /* AppDelegate.swift */; };
@@ -45,7 +45,7 @@
 		FA39FE9124307C1400E7045C /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		FA39FE9324307DAB00E7045C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FA39FE952430864300E7045C /* ImageSearchViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewModal.swift; sourceTree = "<group>"; };
-		FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA39FE982430F32B00E7045C /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModal.swift; sourceTree = "<group>"; };
 		FA39FE9C2430F7CE00E7045C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		FAEB740C24303E7100737875 /* ImageSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +83,7 @@
 		FA39FE972430F15700E7045C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				FA39FE982430F32B00E7045C /* ImageCollectionViewCell.swift */,
+				FA39FE982430F32B00E7045C /* ImageTableViewCell.swift */,
 				FA39FE9A2430F49000E7045C /* ImageCellViewModal.swift */,
 			);
 			path = Cell;
@@ -265,7 +265,7 @@
 				FA39FE962430864300E7045C /* ImageSearchViewModal.swift in Sources */,
 				FA39FE8A2430585900E7045C /* Config.swift in Sources */,
 				FAEB741024303E7100737875 /* AppDelegate.swift in Sources */,
-				FA39FE992430F32B00E7045C /* ImageCollectionViewCell.swift in Sources */,
+				FA39FE992430F32B00E7045C /* ImageTableViewCell.swift in Sources */,
 				FA39FE9424307DAB00E7045C /* Utils.swift in Sources */,
 				FA39FE8C2430587100E7045C /* Strings.swift in Sources */,
 				FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */,
