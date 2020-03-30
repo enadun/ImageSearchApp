@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Protocal definishen for both futrue change in the actual implementatin and crating the mock API manger for unit testing.
 protocol ImageSearchAPIType {
     func searchImagesFor(keyword: String, completion: @escaping (Result<Data, Error>) -> ())
     func downloadImageFor(url: URL, completion: @escaping (Result<Data, Error>) -> ())
@@ -19,6 +20,11 @@ class APIManager: ImageSearchAPIType {
                             "x-rapidapi-key": Config.apiKey ]
     private let session = URLSession.shared
     
+    
+    /// This method returns the response as a Data object for the given keywords.
+    /// - Parameters:
+    ///   - keyword: Keyword for search.
+    ///   - completion: Completion handler for retrun the response data.
     func searchImagesFor(keyword: String, completion: @escaping (Result<Data, Error>) -> ()) {
         //Setting the query parameters
         var queryParams: [URLQueryItem] = []
@@ -56,6 +62,11 @@ class APIManager: ImageSearchAPIType {
         dataTask.resume()
     }
     
+    
+    /// This method will return the image data for given url.
+    /// - Parameters:
+    ///   - url: Url for download the image.
+    ///   - completion: Completion handler retruns the data object of the image.
     func downloadImageFor(url: URL, completion: @escaping (Result<Data, Error>) -> ()) {
         let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy,
                                  timeoutInterval: Config.requestTimeout)

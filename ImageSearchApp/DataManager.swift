@@ -8,11 +8,19 @@
 
 import UIKit
 
+
+/// Her I'm using a interface, because in case of migrating to another storing system,
+/// it'll less effect to the main sysytem.
+// And also, in Unit testing, I can implement a mock data magaer class for testing.
 protocol DataManagerType {
     func findImagesFor(keyword: String, completion: @escaping (Result<[Image], Error>) -> ())
     func findImageFor(url: URL, completion: @escaping (Result<UIImage?, Error>) -> ())
 }
 
+
+/// I don't feel to implement a database for saving the request.
+/// I thought this was the suitable approach to save and retrive reqeusts and images.
+/// Initially I had an idea to givin an option to clean the cache and will be implemented later.
 class DataManager: DataManagerType {
     
     private let api: ImageSearchAPIType
@@ -25,6 +33,13 @@ class DataManager: DataManagerType {
         self.api = api
     }
     
+    
+    /// This methods returns Image object arry for the given keyword. If there is a local
+    /// request to maching the given keyword, it'll load that request from the storage.
+    /// Otherwise it'll load form the given api.
+    /// - Parameters:
+    ///   - keyword: Keyword for search.
+    ///   - completion: Completion handler which return the `Image` array.
     func findImagesFor(keyword: String, completion: @escaping (Result<[Image], Error>) -> ()) {
         let md5 = MD5(string: keyword.lowercased())
         let paths = getContentOfRequestCacheDirectory()
@@ -47,6 +62,13 @@ class DataManager: DataManagerType {
         }
     }
     
+    
+    /// This method rerurn a `UIImage` object for a given url.
+    /// If the md5 of the url is already existing, it'll load form the storage and
+    /// otherwise load from the web.
+    /// - Parameters:
+    ///   - url: Url for the image to retrive.
+    ///   - completion: Completion handler wichi retrun the `UIImage` object.
     func findImageFor(url: URL, completion: @escaping (Result<UIImage?, Error>) -> ()) {
         let md5 = MD5(string: url.absoluteString)
         let paths = getContentOfImageCacheDirectory()
