@@ -16,8 +16,12 @@ class ImageTableViewCell: UITableViewCell {
         didSet {
             thumbImageView.image = nil //Placeholder image
             titleLabel.text = nil
-            if let image = vm?.image {
-                thumbImageView.image = image
+            if let imageBox = vm?.image {
+                imageBox.bind { [weak self] image in
+                    DispatchQueue.main.async {
+                        self?.thumbImageView.image = image
+                    }
+                }
             }
             if let title = vm?.title {
                 titleLabel.text = title

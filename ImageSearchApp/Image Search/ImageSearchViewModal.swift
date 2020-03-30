@@ -44,9 +44,20 @@ class ImageSearchViewModal: ImageSearchViewModalType {
     }
     
     func getImageVMAt(index: Int) -> ImageCellViewModal {
-        let image = images.value[index]
-        let url = URL(string: image.url ?? "")
-        return ImageCellViewModal(image: nil, title: image.title, url:url)
+        let imageObj = images.value[index]
+        let url = URL(string: imageObj.url ?? "")
+        let thumImage: Box<UIImage?> = Box(nil)
+        if let imgURL = URL(string: imageObj.thumbnail ?? "") {
+            dataManager.findImageFor(url: imgURL) { result in
+                switch result {
+                case .success(let image):
+                    thumImage.value = image
+                case .failure(_):
+                    thumImage.value = nil
+                }
+            }
+        }
+        return ImageCellViewModal(image: thumImage, title: imageObj.title, url:url)
     }
     
 }

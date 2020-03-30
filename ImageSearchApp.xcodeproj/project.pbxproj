@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FA39FE8A2430585900E7045C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE892430585900E7045C /* Config.swift */; };
-		FA39FE8C2430587100E7045C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8B2430587100E7045C /* Strings.swift */; };
 		FA39FE8E24305A4800E7045C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8D24305A4800E7045C /* APIManager.swift */; };
 		FA39FE9024307BA300E7045C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE8F24307BA300E7045C /* DataManager.swift */; };
 		FA39FE9224307C1400E7045C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39FE9124307C1400E7045C /* Modal.swift */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		FA39FE892430585900E7045C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		FA39FE8B2430587100E7045C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		FA39FE8D24305A4800E7045C /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		FA39FE8F24307BA300E7045C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FA39FE9124307C1400E7045C /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				FA39FE892430585900E7045C /* Config.swift */,
-				FA39FE8B2430587100E7045C /* Strings.swift */,
 				FA39FE8F24307BA300E7045C /* DataManager.swift */,
 				FA39FE8D24305A4800E7045C /* APIManager.swift */,
 				FA39FE9124307C1400E7045C /* Modal.swift */,
@@ -267,7 +264,6 @@
 				FAEB741024303E7100737875 /* AppDelegate.swift in Sources */,
 				FA39FE992430F32B00E7045C /* ImageTableViewCell.swift in Sources */,
 				FA39FE9424307DAB00E7045C /* Utils.swift in Sources */,
-				FA39FE8C2430587100E7045C /* Strings.swift in Sources */,
 				FAEB741224303E7100737875 /* SceneDelegate.swift in Sources */,
 				FA39FE9224307C1400E7045C /* Modal.swift in Sources */,
 				FA39FE8E24305A4800E7045C /* APIManager.swift in Sources */,
